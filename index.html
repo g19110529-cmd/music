@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>色彩與聲響的內在宇宙｜康丁斯基 × SEL 社會情緒互動藝術畫室</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-paper: #F9F7F2;
+      --ink-dark: #1E1E1E;
+      --k-yellow: #F5C300;
+      --k-blue: #1D4E89;
+      --k-red: #D62828;
+      --k-green: #2A9D8F;
+      --k-purple: #6A4C93;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      background-color: var(--bg-paper);
+      color: var(--ink-dark);
+      overflow-x: hidden;
+    }
+
+    .font-serif-art {
+      font-family: 'Noto Serif TC', serif;
+    }
+
+    /* 包浩斯幾何邊框與陰影質感 */
+    .bauhaus-card {
+      background: #FFFFFF;
+      border: 2px solid #1E1E1E;
+      box-shadow: 4px 4px 0px #1E1E1E;
+    }
+
+    .bauhaus-btn {
+      border: 2px solid #1E1E1E;
+      box-shadow: 2px 2px 0px #1E1E1E;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .bauhaus-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0px 0px 0px #1E1E1E;
+    }
+
+    /* 自訂捲軸 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1EFE9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #B8B4A8;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #1E1E1E;
+    }
+
+    /* 畫布網格紋理 */
+    .canvas-paper-bg {
+      background-color: #FCFBF7;
+      background-image: radial-gradient(#DCD8CC 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    /* 音波跳動動畫 */
+    @keyframes wavePulse {
+      0%, 100% { transform: scaleY(0.35); }
+      50% { transform: scaleY(1); }
+    }
+    .wave-bar {
+      animation: wavePulse 0.8s ease-in-out infinite;
+      transform-origin: bottom;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- 頂部包浩斯藝術館導覽列 -->
+  <header class="bg-[#1E1E1E] text-[#F9F7F2] px-4 py-3 border-b-4 border-[#F5C300] sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <!-- 包浩斯三原色幾何標誌 -->
+        <div class="flex items-center -space-x-1" aria-hidden="true">
+          <span class="w-4 h-4 rounded-full bg-[#1D4E89] inline-block border border-white/40"></span>
+          <span class="w-4 h-4 bg-[#D62828] inline-block border border-white/40"></span>
+          <span class="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[15px] border-b-[#F5C300] inline-block"></span>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold tracking-wide flex items-center gap-2">
+            色彩與聲響的內在宇宙
+            <span class="hidden md:inline-block text-xs font-normal bg-[#F5C300] text-[#1E1E1E] px-2 py-0.5 rounded-full font-semibold">
+              康丁斯基 × SEL 視覺藝術
+            </span>
+          </h1>
+          <p class="text-[11px] text-gray-300 hidden sm:block">點、線、面與聯覺聲響的情緒探索畫室</p>
+        </div>
+      </div>
+
+      <!-- 導覽操作按鈕 -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <button id="toggleGuideBtn" class="bg-[#F9F7F2] text-[#1E1E1E] hover:bg-[#F5C300] text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+          <span>📖</span>
+          <span>SEL 與康丁斯基導覽</span>
+        </button>
+        <button id="openFinishModalBtn" class="bg-[#D62828] hover:bg-[#b81f1f] text-white text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-lg border border-white/30 shadow transition flex items-center gap-1.5">
+          <span>✨</span>
+          <span>完成創作 & 生成樂曲</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 可收合的 SEL 社會情緒學習與康丁斯基藝術導覽面板 -->
+  <section id="guidePanel" class="bg-[#F2EFE7] border-b-2 border-[#1E1E1E] transition-all duration-300">
+    <div class="max-w-7xl mx-auto p-4 sm:p-6">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+        <div class="flex gap-2">
+          <button data-tab="sel" class="guide-tab-btn px-4 py-1.5 rounded-lg text-sm font-bold bg-[#1E1E1E] text-white">
+            1. 何謂 SEL 社會情緒學習？
+          </button>
+          <button data-tab="kandinsky" class="guide-tab-btn px-4 py-1.5 rounded-lg text-sm font-bold bg-white text-[#1E1E1E] border border-[#1E1E1E]">
+            2. 康丁斯基聯覺與色彩情緒理論
+          </button>
+        </div>
+        <button id="closeGuideBtn" class="text-xs text-gray-600 hover:text-black underline px-2 py-1">
+          收合導覽面板 ▲
+        </button>
+      </div>
+
+      <!-- 分頁 1：SEL 社會情緒學習介紹與外部資源 -->
+      <div id="tab-sel" class="guide-tab-content grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div class="bauhaus-card rounded-xl p-4 lg:col-span-2">
+          <h2 class="text-base font-bold text-[#1D4E89] mb-2 flex items-center gap-2">
+            <span>🧠</span> 什麼是 SEL（Social and Emotional Learning，社會情緒學習）？
+          </h2>
+          <p class="text-sm text-gray-700 leading-relaxed mb-3">
+            社會情緒學習（SEL）是由美國「學術、社會與情緒學習合作組織」（CASEL）所倡議的核心教育架構，旨在幫助學習者認識並管理自身情緒、培養同理心、建立正向人際關係，並做出負責任的決定。在<strong>視覺藝術創作</strong>中，抽象的色彩與幾何圖形能成為非語言的情緒出口，讓我們安全地覺察內在狀態。
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+            <div class="bg-[#FFF8D6] border border-[#1E1E1E] rounded-lg p-2">
+              <div class="font-bold text-[#9A7800]">1. 自我覺察</div>
+              <p class="text-gray-700 mt-0.5">辨識此刻的情緒、感受與內在想法。</p>
+            </div>
+            <div class="bg-[#E3F0FF] border border-[#1E1E1E] rounded-lg p-2">
+              <div class="font-bold text-[#1D4E89]">2. 自我管理</div>
+              <p class="text-gray-700 mt-0.5">透過藝術與呼吸調節壓力與衝動。</p>
+            </div>
+            <div class="bg-[#E2F6F3] border border-[#1E1E1E] rounded-lg p-2">
+              <div class="font-bold text-[#1F7A6E]">3. 社會覺察</div>
+              <p class="text-gray-700 mt-0.5">同理並理解他人作品背後的情緒故事。</p>
+            </div>
+            <div class="bg-[#FFE5E5] border border-[#1E1E1E] rounded-lg p-2">
+              <div class="font-bold text-[#B31B1B]">4. 人際技巧</div>
+              <p class="text-gray-700 mt-0.5">清晰表達自我感受並傾聽他人回饋。</p>
+            </div>
+            <div class="bg-[#F0E9FA] border border-[#1E1E1E] rounded-lg p-2 col-span-2 sm:col-span-1">
+              <div class="font-bold text-[#52377A]">5. 負責任決策</div>
+              <p class="text-gray-700 mt-0.5">在構圖與取捨中進行反思與選擇。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bauhaus-card rounded-xl p-4 flex flex-col justify-between bg-[#FFFDF7]">
+          <div>
+            <h3 class="text-sm font-bold text-[#1E1E1E] mb-2">🔗 延伸學習與教育資源</h3>
+            <ul class="space-y-2 text-xs">
+              <li>
+                <a href="https://casel.org/fundamentals-of-sel/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded-lg bg-white border border-gray-300 hover:border-[#1D4E89] hover:text-[#1D4E89] transition">
+                  <span><strong>CASEL 官方網站</strong>：SEL 五大核心素養架構</span>
+                  <span>↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.edu.tw/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded-lg bg-white border border-gray-300 hover:border-[#1D4E89] hover:text-[#1D4E89] transition">
+                  <span><strong>教育部資訊網</strong>：社會情緒學習與全人教育</span>
+                  <span>↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.guggenheim.org/artwork/artist/vasily-kandinsky" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2 rounded-lg bg-white border border-gray-300 hover:border-[#1D4E89] hover:text-[#1D4E89] transition">
+                  <span><strong>古根漢美術館</strong>：康丁斯基抽象藝術典藏</span>
+                  <span>↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <p class="text-[11px] text-gray-500 mt-3">
+            💡 課堂小任務：閉眼深呼吸 5 秒，感受你現在的心情更接近哪種形狀與聲音，再開始挑選元素！
+          </p>
+        </div>
+      </div>
+
+      <!-- 分頁 2：康丁斯基理論 -->
+      <div id="tab-kandinsky" class="guide-tab-content hidden grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bauhaus-card rounded-xl p-4">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="w-0 h-0 border-l-[9px] border-l-transparent border-r-[9px] border-r-transparent border-b-[16px] border-b-[#F5C300]"></span>
+            <h3 class="font-bold text-sm">黃色 × 銳角三角形 × 小號高音</h3>
+          </div>
+          <p class="text-xs text-gray-700 leading-relaxed">
+            康丁斯基認為「黃色」是躁動、向外擴張且充滿能量的色彩，如同刺眼尖銳的小號聲響（Trumpet）。與<strong>銳角三角形</strong>結合時，能表達興奮、熱情、警覺或焦慮的情緒張力。
+          </p>
+        </div>
+        <div class="bauhaus-card rounded-xl p-4">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="w-4 h-4 rounded-full bg-[#1D4E89]"></span>
+            <h3 class="font-bold text-sm">藍色 × 正圓形 × 大提琴低音</h3>
+          </div>
+          <p class="text-xs text-gray-700 leading-relaxed">
+            「藍色」是深邃、向內收斂的靈性色彩，象徵平靜、沉思與內在宇宙，如同深沉溫暖的大提琴（Cello）與管風琴低音。<strong>圓形</strong>沒有尖角，代表包容、和平與情緒的舒緩。
+          </p>
+        </div>
+        <div class="bauhaus-card rounded-xl p-4">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="w-4 h-4 bg-[#D62828]"></span>
+            <h3 class="font-bold text-sm">紅色 × 正方形 × 鼓聲與中音</h3>
+          </div>
+          <p class="text-xs text-gray-700 leading-relaxed">
+            「紅色」充滿內在燃燒的生命力與堅定意志，如同穩重有力的鼓聲與大號。<strong>正方形</strong>的四個直角象徵秩序、穩定、力量或壓抑的憤怒，而<strong>波浪線與綠色</strong>則帶來小提琴般的和諧平衡。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 主工作區：左側工具箱 + 中央互動畫布 + 右側圖層與消除剪裁工具 -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-5 grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+
+    <!-- 左側面板：幾何元素庫 + 康丁斯基情緒色彩盤 (3 cols) -->
+    <aside class="lg:col-span-3 space-y-4">
+      <!-- 1. 幾何圖形與線條選擇 -->
+      <div class="bauhaus-card rounded-xl p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-sm font-bold flex items-center gap-1.5">
+            <span>📐</span> 點・線・面幾何元素
+          </h2>
+          <span class="text-[11px] text-gray-500">點擊加入畫布</span>
+        </div>
+        <div class="grid grid-cols-4 lg:grid-cols-2 gap-2" id="shapeButtonsContainer">
+          <button data-shape="triangle" class="shape-add-btn bauhaus-btn bg-white hover:bg-[#FFF9DB] rounded-lg p-2.5 flex flex-col items-center justify-center gap-1 text-xs font-medium">
+            <svg class="w-6 h-6" viewBox="0 0 32 32"><polygon points="16,4 29,27 3,27" fill="#F5C300" stroke="#1E1E1E" stroke-width="2"/></svg>
+            <span>銳角三角形</span>
+            <span class="text-[10px] text-gray-500">活力/警覺</span>
+          </button>
+
+          <button data-shape="circle" class="shape-add-btn bauhaus-btn bg-white hover:bg-[#E8F1FA] rounded-lg p-2.5 flex flex-col items-center justify-center gap-1 text-xs font-medium">
+            <svg class="w-6 h-6" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="#1D4E89" stroke="#1E1E1E" stroke-width="2"/></svg>
+            <span>正圓形</span>
+            <span class="text-[10px] text-gray-500">平和/宇宙</span>
+          </button>
+
+          <button data-shape="square" class="shape-add-btn bauhaus-btn bg-white hover:bg-[#FDE8E8] rounded-lg p-2.5 flex flex-col items-center justify-center gap-1 text-xs font-medium">
+            <svg class="w-6 h-6" viewBox="0 0 32 32"><rect x="5" y="5" width="22" height="22" fill="#D62828" stroke="#1E1E1E" stroke-width="2"/></svg>
+            <span>正方形</span>
+            <span class="text-[10px] text-gray-500">穩定/力量</span>
+          </button>
+
+          <button data-shape="concentric" class="shape-add-btn bauhaus-btn bg-white hover:bg-[#F3EEFA] rounded-lg p-2.5 flex flex-col items-center justify-center gap-1 text-xs font-medium">
+            <svg class="w-6 h-6" viewBox="0 0 32 32">
+              <circle cx="16" cy="16" r="12" fill="#6A4C93" stroke="#1E1E1E" stroke-width="1.5"/>
+              <circle cx="16" cy="16" r="7" fill="#F5C300" stroke="#1E1E1E" stroke-width="1.5"/>
+              <circle cx="16" cy="16" r="3" fill="#D62828"/>
+            </svg>
+            <span>同心圓</span>
+            <span class="text-[10px] text-gray-500">層次/共鳴</span>
+          </button>
+
+          <button data-shape="wave" class="shape-add-btn bauhaus-btn bg-white hover:bg-[#E5F6F3] rounded-lg p-2.5 flex flex-col items-center justify-center gap-1 text-xs font-medium">
+            <svg class="w-6 h-6" viewBox="0 0 32 32">
+              <path d="M2,16 Q9,6 16,16 T30,16" fill="none" stroke="#2A9D8F" stroke-width="3.5" stroke-linecap="round"/>
+            </svg>
+            <span>和諧波浪線</span>
+            <span class="text-[10px] text-gray-500">流動/舒緩</span>
+          </button>
+
+          <button data-shape="arc" class="shape-add-btn bauhaus-btn bg-white hover:bg-[#FFF3E0] rounded-lg p-2.5 flex flex-col items-center justify-center gap-1 text-xs font-medium">
+            <svg class="w-6 h-6" viewBox="0 0 32 32">
+              <path d="M5,24 A12,12 0 0,1 27,24" fill="none" stroke="#E76F51" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <span>張力弧線</span>
+            <span class="text-[10px] text-gray-500">期盼/延伸</span>
+          </button>
+
+          <button data-shape="cross" class="shape-add-btn bauhaus-btn bg-white hover:bg-gray-100 rounded-lg p-2.5 flex flex-col items-center justify-center gap-1 text-xs font-medium">
+            <svg class="w-6 h-6" viewBox="0 0 32 32">
+              <line x1="6" y1="6" x2="26" y2="26" stroke="#1E1E1E" stroke-width="3"/>
+              <line x1="26" y1="6" x2="6" y2="26" stroke="#1E1E1E" stroke-width="3"/>
+            </svg>
+            <span>交錯線段</span>
+            <span class="text-[10px] text-gray-500">衝突/交會</span>
+          </button>
+
+          <button data-shape="dots" class="shape-add-btn bauhaus-btn bg-white hover:bg-[#E8F1FA] rounded-lg p-2.5 flex flex-col items-center justify-center gap-1 text-xs font-medium">
+            <svg class="w-6 h-6" viewBox="0 0 32 32">
+              <circle cx="8" cy="10" r="2.5" fill="#1E1E1E"/>
+              <circle cx="17" cy="8" r="3.5" fill="#D62828"/>
+              <circle cx="24" cy="16" r="2" fill="#1D4E89"/>
+              <circle cx="12" cy="22" r="3" fill="#F5C300"/>
+              <circle cx="22" cy="24" r="2.5" fill="#2A9D8F"/>
+            </svg>
+            <span>星群點陣</span>
+            <span class="text-[10px] text-gray-500">思緒/微光</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. 康丁斯基情緒色彩盤 -->
+      <div class="bauhaus-card rounded-xl p-4">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-sm font-bold flex items-center gap-1.5">
+            <span>🎨</span> 康丁斯基情緒色彩盤
+          </h2>
+          <span id="activeColorLabel" class="text-[11px] font-bold px-2 py-0.5 rounded bg-[#FFF3BF] text-[#1E1E1E]">熱烈黃</span>
+        </div>
+
+        <div class="grid grid-cols-4 gap-2 mb-3" id="colorPaletteGrid">
+          <!-- 動態產生色彩按鈕 -->
+        </div>
+
+        <!-- 透明度滑桿 -->
+        <div class="pt-2 border-t border-gray-200">
+          <div class="flex justify-between text-xs mb-1">
+            <span class="font-medium text-gray-700">色彩濃淡（透明度）</span>
+            <span id="opacityValText" class="font-bold">90%</span>
+          </div>
+          <input type="range" id="opacitySlider" min="25" max="100" value="90" class="w-full accent-[#1E1E1E] cursor-pointer" />
+        </div>
+      </div>
+    </aside>
+
+    <!-- 中央面板：互動幾何創作畫布 (6 cols) -->
+    <section class="lg:col-span-6 flex flex-col gap-3">
+      <!-- 畫布頂部狀態提示列 -->
+      <div class="bg-white border-2 border-[#1E1E1E] rounded-xl px-3.5 py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="flex items-center gap-2">
+          <span id="modeBadge" class="px-2.5 py-0.5 rounded-full font-bold bg-[#1D4E89] text-white">
+            ✋ 創作與發聲模式
+          </span>
+          <span class="text-gray-600 hidden sm:inline">點擊圖形聆聽聯覺樂音，拖曳可調整位置</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <button id="soundToggleBtn" class="px-2.5 py-1 rounded-lg border border-[#1E1E1E] bg-[#FFF9DB] hover:bg-[#F5C300] font-semibold flex items-center gap-1" title="開啟或靜音聯覺音效">
+            <span id="soundIcon">🔊</span>
+            <span id="soundText">聯覺音效：開</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 畫布容器 -->
+      <div id="canvasWrapper" class="relative w-full aspect-[4/3] bauhaus-card rounded-2xl overflow-hidden canvas-paper-bg select-none touch-none">
+        <canvas id="artCanvas" class="w-full h-full block cursor-grab"></canvas>
+
+        <!-- 畫布右下角圖形微調浮動控制列 (選取圖形時出現) -->
+        <div id="selectedItemControls" class="hidden absolute bottom-3 left-3 right-3 sm:left-auto sm:right-3 bg-white/95 backdrop-blur border-2 border-[#1E1E1E] rounded-xl p-2.5 shadow-lg flex flex-wrap items-center justify-center gap-2 text-xs">
+          <span class="font-bold text-[#1D4E89] mr-1">已選圖形：</span>
+          <button id="scaleDownBtn" class="px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded border border-gray-400 font-bold" title="縮小">－ 縮小</button>
+          <button id="scaleUpBtn" class="px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded border border-gray-400 font-bold" title="放大">＋ 放大</button>
+          <button id="rotateBtn" class="px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded border border-gray-400 font-bold" title="旋轉 30 度">↻ 旋轉</button>
+          <button id="layerUpBtn" class="px-2 py-1 bg-gray-100 hover:bg-gray-200 rounded border border-gray-400" title="上移圖層">⬆ 置前</button>
+          <button id="deleteSelectedBtn" class="px-2 py-1 bg-[#FFE5E5] hover:bg-[#D62828] hover:text-white text-[#D62828] rounded border border-[#D62828] font-bold" title="刪除此圖形">🗑️ 刪除</button>
+        </div>
+      </div>
+
+      <!-- 聯覺即時聲響回饋條 -->
+      <div class="bg-[#1E1E1E] text-white rounded-xl px-4 py-2.5 flex items-center justify-between text-xs">
+        <div class="flex items-center gap-2.5">
+          <span class="text-base" id="synesthesiaEmoji">🎵</span>
+          <div>
+            <div class="font-bold text-[#F5C300]" id="synesthesiaTitle">點擊畫布上的幾何圖形，體驗康丁斯基「視覺聽覺聯覺」</div>
+            <div class="text-gray-300 text-[11px]" id="synesthesiaDesc">不同形狀與顏色會觸發專屬樂器音色與頻率，Y 軸高度決定音高</div>
+          </div>
+        </div>
+        <div id="liveNoteBadge" class="hidden sm:block px-2.5 py-1 rounded bg-white/10 font-mono text-[#F5C300] font-bold">
+          READY
+        </div>
+      </div>
+    </section>
+
+    <!-- 右側面板：消除與修剪工具 + 情緒色彩統計 (3 cols) -->
+    <aside class="lg:col-span-3 space-y-4">
+      <!-- 1. 側邊消除與剪去工具 -->
+      <div class="bauhaus-card rounded-xl p-4">
+        <h2 class="text-sm font-bold mb-2 flex items-center gap-1.5">
+          <span>✂️</span> 消除與修剪工具
+        </h2>
+        <p class="text-[11px] text-gray-600 mb-3 leading-relaxed">
+          在藝術創作中，「減法與修剪」能幫助我們釋放多餘壓力、聚焦核心感受。
+        </p>
+
+        <div class="space-y-2">
+          <button id="modeSelectBtn" class="w-full bauhaus-btn bg-[#1D4E89] text-white rounded-lg px-3 py-2 text-xs font-bold flex items-center justify-between">
+            <span>✋ 選取 / 拖曳 / 點擊發聲</span>
+            <span class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded">預設</span>
+          </button>
+
+          <button id="modeDeleteObjBtn" class="w-full bauhaus-btn bg-white hover:bg-[#FFE5E5] text-[#1E1E1E] rounded-lg px-3 py-2 text-xs font-bold flex items-center justify-between">
+            <span>🗑️ 單擊消除圖形</span>
+            <span class="text-[10px] text-gray-500">移除整個元件</span>
+          </button>
+
+          <button id="modeScissorBrushBtn" class="w-full bauhaus-btn bg-white hover:bg-[#FFF3BF] text-[#1E1E1E] rounded-lg px-3 py-2 text-xs font-bold flex items-center justify-between">
+            <span>✂️ 剪紙局部裁切筆刷</span>
+            <span class="text-[10px] text-gray-500">剪去局部區塊</span>
+          </button>
+        </div>
+
+        <!-- 局部裁切筆刷大小設定（僅在剪紙模式顯示） -->
+        <div id="scissorSizeBox" class="hidden mt-3 p-2.5 bg-[#FFF9DB] border border-[#1E1E1E] rounded-lg">
+          <div class="flex justify-between text-xs font-bold mb-1">
+            <span>✂️ 剪刀裁切寬度</span>
+            <span id="scissorSizeVal">28 px</span>
+          </div>
+          <input type="range" id="scissorSizeSlider" min="12" max="60" value="28" class="w-full accent-[#D62828] cursor-pointer" />
+          <p class="text-[10px] text-gray-700 mt-1">在畫布上塗抹即可剪去局部圖案，營造拼貼鏤空感！</p>
+        </div>
+
+        <!-- 復原與清空 -->
+        <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-gray-200">
+          <button id="undoBtn" class="bauhaus-btn bg-[#F2EFE7] hover:bg-gray-200 rounded-lg py-2 text-xs font-bold flex items-center justify-center gap-1">
+            <span>↩️</span> 復原一步
+          </button>
+          <button id="clearCanvasBtn" class="bauhaus-btn bg-white hover:bg-[#FFE5E5] text-[#D62828] rounded-lg py-2 text-xs font-bold flex items-center justify-center gap-1">
+            <span>🧹</span> 全部清空
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. 即時情緒光譜分析 -->
+      <div class="bauhaus-card rounded-xl p-4">
+        <h2 class="text-sm font-bold mb-2 flex items-center gap-1.5">
+          <span>📊</span> 此刻畫布情緒光譜
+        </h2>
+        <div id="emotionStatsContainer" class="space-y-2 text-xs">
+          <p class="text-gray-500 text-[11px]">在畫布上加入幾何與色彩後，系統將即時分析你的情緒能量分布。</p>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- 完成創作與作品集結算 Modal -->
+  <div id="finishModal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="bg-[#F9F7F2] border-4 border-[#1E1E1E] rounded-2xl max-w-4xl w-full shadow-2xl overflow-hidden my-auto">
+      <!-- Modal 頂部 -->
+      <div class="bg-[#1E1E1E] text-white px-5 py-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-lg">🏛️</span>
+          <h2 class="font-bold text-base sm:text-lg">SEL 視覺藝術典藏與專屬聯覺樂曲</h2>
+        </div>
+        <button id="closeFinishModalBtn" class="text-gray-300 hover:text-white text-xl font-bold px-2">✕</button>
+      </div>
+
+      <!-- Modal 內容 -->
+      <div class="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-5 max-h-[82vh] overflow-y-auto">
+        <!-- 左側：作品預覽與自動生成音樂播放器 (6 cols) -->
+        <div class="lg:col-span-6 space-y-4">
+          <div class="bauhaus-card rounded-xl p-2 bg-white">
+            <img id="artworkPreviewImg" src="" alt="你的幾何情緒創作預覽" class="w-full h-auto rounded-lg border border-gray-200" />
+          </div>
+
+          <!-- 自動生成的專屬情緒樂曲播放器 -->
+          <div class="bauhaus-card rounded-xl p-4 bg-[#1E1E1E] text-white">
+            <div class="flex items-center justify-between mb-2">
+              <div>
+                <span class="text-[10px] uppercase tracking-wider bg-[#F5C300] text-[#1E1E1E] font-bold px-2 py-0.5 rounded">
+                  AI 聯覺自動編曲
+                </span>
+                <h3 class="text-sm font-bold mt-1" id="generatedMusicTitle">《專屬情緒交響小品》</h3>
+              </div>
+              <button id="playGeneratedMusicBtn" class="bg-[#2A9D8F] hover:bg-[#21867a] text-white font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow">
+                <span id="musicPlayIcon">▶</span>
+                <span id="musicPlayText">播放專屬樂曲</span>
+              </button>
+            </div>
+
+            <!-- 動態音波視覺條 -->
+            <div class="h-10 bg-black/40 rounded-lg px-3 flex items-end justify-between gap-1 py-2" id="musicVisualizerBars">
+              <!-- JS 動態產生 24 根音波條 -->
+            </div>
+            <p class="text-[11px] text-gray-300 mt-2" id="musicAnalysisDesc">
+              依據畫布幾何座標（X軸時間、Y軸音高）與色彩調性即時合成。
+            </p>
+          </div>
+        </div>
+
+        <!-- 右側：自動生成作品名稱 + 創作者姓名與創作理念填寫 + 下載 (6 cols) -->
+        <div class="lg:col-span-6 flex flex-col justify-between space-y-4">
+          <div class="space-y-4">
+            <!-- 自動產出創作名稱 -->
+            <div class="bauhaus-card rounded-xl p-4 bg-[#FFFDF7]">
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="text-xs font-bold text-[#1D4E89]">✨ 系統自動產出作品名稱（可重新靈感生成或自訂）</label>
+                <button id="regenerateTitleBtn" class="text-xs bg-[#F5C300] hover:bg-[#e0b200] text-[#1E1E1E] font-bold px-2.5 py-1 rounded-lg border border-[#1E1E1E]">
+                  🎲 換個靈感名稱
+                </button>
+              </div>
+              <input type="text" id="artworkTitleInput" class="w-full font-serif-art text-base sm:text-lg font-bold bg-white border-2 border-[#1E1E1E] rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#1D4E89]" value="《藍色圓舞曲的靜謐迴響》" />
+            </div>
+
+            <!-- 創作者姓名與創作理念 -->
+            <div class="bauhaus-card rounded-xl p-4 space-y-3">
+              <div>
+                <label for="creatorNameInput" class="block text-xs font-bold text-gray-800 mb-1">
+                  🧑‍🎨 創作者姓名 / 班級座號
+                </label>
+                <input type="text" id="creatorNameInput" placeholder="請輸入你的名字（例如：王小明 / 802班）" class="w-full text-sm bg-[#F9F7F2] border border-[#1E1E1E] rounded-lg px-3 py-2 focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1D4E89]" />
+              </div>
+
+              <div>
+                <label for="creatorConceptInput" class="block text-xs font-bold text-gray-800 mb-1">
+                  💭 創作理念與 SEL 情緒自我覺察筆記
+                </label>
+                <textarea id="creatorConceptInput" rows="3" placeholder="寫下你現在的心情，為什麼選擇這些顏色與幾何形狀？它們聽起來像什麼聲音？" class="w-full text-sm bg-[#F9F7F2] border border-[#1E1E1E] rounded-lg px-3 py-2 focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1D4E89]"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- 下載按鈕 -->
+          <div class="space-y-2">
+            <button id="downloadArtworkCardBtn" class="w-full bauhaus-btn bg-[#D62828] hover:bg-[#b81f1f] text-white font-bold py-3.5 px-4 rounded-xl text-sm sm:text-base flex items-center justify-center gap-2">
+              <span>📥</span>
+              <span>下載完整美術館作品明信片 (PNG)</span>
+            </button>
+            <p class="text-[11px] text-center text-gray-500">
+              將自動把畫作、作品名稱、創作者姓名、創作理念與情緒標籤排版為高畫質圖卡
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 輕量提示訊息 Toast（取代 alert） -->
+  <div id="toastMsg" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 bg-[#1E1E1E] text-white text-xs sm:text-sm font-medium px-4 py-2.5 rounded-full shadow-xl border border-[#F5C300] opacity-0 pointer-events-none transition-opacity duration-300">
+    提示訊息
+  </div>
+
+  <script>
+    /**
+     * ============================================================================
+     * 康丁斯基 × SEL 社會情緒學習互動藝術畫室 核心應用程式
+     * 包含：
+     * 1. 康丁斯基色彩心理學與聯覺音效引擎 (Web Audio API)
+     * 2. 2D 互動幾何畫布 (拖曳、縮放、旋轉、單擊刪除、剪紙局部遮罩裁切、復原)
+     * 3. 智慧作品名稱生成器與畫布音樂編曲機
+     * 4. 高解析度美術館展覽明信片 PNG 合成下載
+     * ============================================================================
+     */
+
+    // --- 1. 康丁斯基情緒色彩資料庫 ---
+    const KANDINSKY_COLORS = [
+      { id: 'yellow', name: '熱烈黃', hex: '#F5C300', emotion: '熱情・活力・警覺', instrument: '小號明亮銅管', scaleFreqs: [523.25, 587.33, 659.25, 783.99, 880.00] },
+      { id: 'blue',   name: '沉靜藍', hex: '#1D4E89', emotion: '平靜・沉思・內在', instrument: '大提琴溫潤低音', scaleFreqs: [261.63, 293.66, 329.63, 392.00, 440.00] },
+      { id: 'red',    name: '炙熱紅', hex: '#D62828', emotion: '力量・勇氣・張力', instrument: '定音鼓與中音號', scaleFreqs: [293.66, 349.23, 392.00, 440.00, 523.25] },
+      { id: 'green',  name: '平衡綠', hex: '#2A9D8F', emotion: '和諧・安穩・療癒', instrument: '小提琴柔和長音', scaleFreqs: [329.63, 392.00, 440.00, 493.88, 587.33] },
+      { id: 'purple', name: '神祕紫', hex: '#6A4C93', emotion: '靈感・想像・深邃', instrument: '木管與豎琴泛音', scaleFreqs: [349.23, 415.30, 466.16, 523.25, 622.25] },
+      { id: 'orange', name: '暖陽橙', hex: '#F4A261', emotion: '溫暖・希望・交流', instrument: '法國號溫暖和聲', scaleFreqs: [392.00, 440.00, 493.88, 587.33, 659.25] },
+      { id: 'black',  name: '深邃黑', hex: '#1E1E1E', emotion: '邊界・沉澱・寂靜', instrument: '低音倍大提琴',   scaleFreqs: [130.81, 146.83, 164.81, 196.00, 220.00] },
+      { id: 'white',  name: '純淨白', hex: '#FFFFFF', emotion: '留白・釋放・可能', instrument: '清脆鋼琴高音',   scaleFreqs: [659.25, 783.99, 880.00, 987.77, 1046.50] }
+    ];
+
+    const SHAPE_META = {
+      triangle:   { label: '銳角三角形', trait: '銳利張力', waveType: 'sawtooth' },
+      circle:     { label: '正圓形',     trait: '圓融平靜', waveType: 'sine' },
+      square:     { label: '正方形',     trait: '穩重秩序', waveType: 'square' },
+      concentric: { label: '同心圓',     trait: '內在共鳴', waveType: 'sine' },
+      wave:       { label: '和諧波浪線', trait: '流動韻律', waveType: 'triangle' },
+      arc:        { label: '張力弧線',   trait: '向上期盼', waveType: 'triangle' },
+      cross:      { label: '交錯線段',   trait: '思緒交會', waveType: 'square' },
+      dots:       { label: '星群點陣',   trait: '閃爍微光', waveType: 'sine' }
+    };
+
+    // --- 2. 應用程式狀態 ---
+    const state = {
+      elements: [],          // 畫布上的幾何圖形物件陣列
+      eraserStrokes: [],     // 局部剪紙裁切路徑 (模擬剪去一角)
+      history: [],           // 復原堆疊
+      selectedId: null,      // 目前選取的圖形 ID
+      currentColor: KANDINSKY_COLORS[0],
+      currentOpacity: 0.9,
+      toolMode: 'select',    // 'select' | 'deleteObj' | 'scissorBrush'
+      scissorSize: 28,
+      soundEnabled: true,
+      isDragging: false,
+      isCutting: false,
+      dragOffsetX: 0,
+      dragOffsetY: 0,
+      currentCutPath: null,
+      isPlayingMusic: false,
+      musicTimers: []
+    };
+
+    // --- 3. Web Audio API 康丁斯基聯覺合成器 ---
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    /**
+     * 根據幾何形狀、顏色與 Y 軸高度發出康丁斯基聯覺樂音
+     */
+    function playSynesthesiaSound(element, canvasHeight = 450, duration = 0.65) {
+      if (!state.soundEnabled) return;
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+        const colorObj = KANDINSKY_COLORS.find(c => c.id === element.colorId) || KANDINSKY_COLORS[0];
+        const shapeInfo = SHAPE_META[element.type] || SHAPE_META.circle;
+
+        // 依據 Y 軸計算音高索引 (越上方音越高，越下方音越低沉)
+        const normalizedY = Math.max(0, Math.min(1, element.y / canvasHeight));
+        const noteIndex = Math.min(
+          colorObj.scaleFreqs.length - 1,
+          Math.floor((1 - normalizedY) * colorObj.scaleFreqs.length)
+        );
+        const baseFreq = colorObj.scaleFreqs[noteIndex];
+
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        const filter = audioCtx.createBiquadFilter();
+
+        osc.type = shapeInfo.waveType;
+        osc.frequency.setValueAtTime(baseFreq, now);
+
+        // 針對不同形狀塑造康丁斯基聯覺音色包絡
+        if (element.type === 'triangle' || element.type === 'cross') {
+          // 銳角三角形：明亮小號般的滑音起音
+          osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.03, now + 0.08);
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(2200, now);
+        } else if (element.type === 'circle' || element.type === 'concentric') {
+          // 圓形：大提琴溫潤弦樂感
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(950, now);
+        } else if (element.type === 'wave' || element.type === 'arc') {
+          // 波浪線：帶有抖音 (Vibrato) 的小提琴
+          const lfo = audioCtx.createOscillator();
+          const lfoGain = audioCtx.createGain();
+          lfo.frequency.value = 5.5;
+          lfoGain.gain.value = 8;
+          lfo.connect(lfoGain);
+          lfoGain.connect(osc.frequency);
+          lfo.start(now);
+          lfo.stop(now + duration);
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(1400, now);
+        } else {
+          // 正方形或點陣：厚實鼓點與木琴感
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(1100, now);
+        }
+
+        // 音量包絡避免爆音
+        const peakGain = shapeInfo.waveType === 'sawtooth' || shapeInfo.waveType === 'square' ? 0.14 : 0.24;
+        gainNode.gain.setValueAtTime(0.001, now);
+        gainNode.gain.linearRampToValueAtTime(peakGain, now + 0.04);
+        gainNode.gain.exponentialRampToValueAtTime(0.0008, now + duration);
+
+        osc.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + duration);
+
+        // 更新底部聯覺回饋條
+        updateSynesthesiaBanner(colorObj, shapeInfo, Math.round(baseFreq));
+      } catch (e) {
+        console.warn('音訊播放受限:', e);
+      }
+    }
+
+    function updateSynesthesiaBanner(colorObj, shapeInfo, freq) {
+      document.getElementById('synesthesiaTitle').textContent =
+        `${colorObj.name} × ${shapeInfo.label} → ${colorObj.instrument}`;
+      document.getElementById('synesthesiaDesc').textContent =
+        `情緒共鳴：【${colorObj.emotion}】｜形狀特質：${shapeInfo.trait}`;
+      const badge = document.getElementById('liveNoteBadge');
+      badge.textContent = `${freq} Hz`;
+      badge.classList.remove('hidden');
+    }
+
+    // --- 4. Canvas 繪圖與幾何圖形引擎 ---
+    const canvas = document.getElementById('artCanvas');
+    const ctx = canvas.getContext('2d');
+    // 離屏圖層用於渲染幾何元素並套用局部剪紙橡皮擦遮罩
+    const layerCanvas = document.createElement('canvas');
+    const layerCtx = layerCanvas.getContext('2d');
+
+    function resizeCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      layerCanvas.width = canvas.width;
+      layerCanvas.height = canvas.height;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      layerCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      renderCanvas();
+    }
+
+    function saveHistory() {
+      state.history.push(JSON.stringify({
+        elements: state.elements,
+        eraserStrokes: state.eraserStrokes
+      }));
+      if (state.history.length > 25) state.history.shift();
+    }
+
+    function undoAction() {
+      if (state.history.length === 0) {
+        showToast('目前沒有可復原的步驟');
+        return;
+      }
+      const prev = JSON.parse(state.history.pop());
+      state.elements = prev.elements;
+      state.eraserStrokes = prev.eraserStrokes;
+      state.selectedId = null;
+      updateSelectedControls();
+      updateEmotionStats();
+      renderCanvas();
+      showToast('已復原上一步操作');
+    }
+
+    /**
+     * 在指定 Context 上繪製單一幾何圖形
+     */
+    function drawSingleElement(targetCtx, el, isSelected = false) {
+      targetCtx.save();
+      targetCtx.translate(el.x, el.y);
+      targetCtx.rotate((el.rotation * Math.PI) / 180);
+      targetCtx.globalAlpha = el.opacity;
+
+      const s = el.size;
+      const strokeColor = el.hex === '#1E1E1E' ? '#555555' : '#1E1E1E';
+
+      targetCtx.fillStyle = el.hex;
+      targetCtx.strokeStyle = strokeColor;
+      targetCtx.lineWidth = 2.5;
+      targetCtx.lineJoin = 'round';
+      targetCtx.lineCap = 'round';
+
+      switch (el.type) {
+        case 'triangle':
+          targetCtx.beginPath();
+          targetCtx.moveTo(0, -s * 0.65);
+          targetCtx.lineTo(s * 0.58, s * 0.45);
+          targetCtx.lineTo(-s * 0.58, s * 0.45);
+          targetCtx.closePath();
+          targetCtx.fill();
+          targetCtx.stroke();
+          break;
+
+        case 'circle':
+          targetCtx.beginPath();
+          targetCtx.arc(0, 0, s * 0.5, 0, Math.PI * 2);
+          targetCtx.fill();
+          targetCtx.stroke();
+          break;
+
+        case 'square':
+          targetCtx.beginPath();
+          targetCtx.rect(-s * 0.45, -s * 0.45, s * 0.9, s * 0.9);
+          targetCtx.fill();
+          targetCtx.stroke();
+          break;
+
+        case 'concentric':
+          // 康丁斯基經典同心圓
+          targetCtx.beginPath();
+          targetCtx.arc(0, 0, s * 0.55, 0, Math.PI * 2);
+          targetCtx.fill();
+          targetCtx.stroke();
+
+          targetCtx.beginPath();
+          targetCtx.fillStyle = el.hex === '#F5C300' ? '#1D4E89' : '#F5C300';
+          targetCtx.arc(0, 0, s * 0.34, 0, Math.PI * 2);
+          targetCtx.fill();
+          targetCtx.stroke();
+
+          targetCtx.beginPath();
+          targetCtx.fillStyle = el.hex === '#D62828' ? '#FFFFFF' : '#D62828';
+          targetCtx.arc(0, 0, s * 0.15, 0, Math.PI * 2);
+          targetCtx.fill();
+          break;
+
+        case 'wave':
+          targetCtx.strokeStyle = el.hex;
+          targetCtx.lineWidth = Math.max(4, s * 0.09);
+          targetCtx.beginPath();
+          targetCtx.moveTo(-s * 0.65, 0);
+          targetCtx.quadraticCurveTo(-s * 0.32, -s * 0.45, 0, 0);
+          targetCtx.quadraticCurveTo(s * 0.32, s * 0.45, s * 0.65, 0);
+          targetCtx.stroke();
+          break;
+
+        case 'arc':
+          targetCtx.strokeStyle = el.hex;
+          targetCtx.lineWidth = Math.max(5, s * 0.11);
+          targetCtx.beginPath();
+          targetCtx.arc(0, s * 0.15, s * 0.52, Math.PI, 0, false);
+          targetCtx.stroke();
+          break;
+
+        case 'cross':
+          targetCtx.strokeStyle = el.hex;
+          targetCtx.lineWidth = Math.max(4, s * 0.08);
+          targetCtx.beginPath();
+          targetCtx.moveTo(-s * 0.45, -s * 0.45);
+          targetCtx.lineTo(s * 0.45, s * 0.45);
+          targetCtx.moveTo(s * 0.45, -s * 0.45);
+          targetCtx.lineTo(-s * 0.45, s * 0.45);
+          targetCtx.stroke();
+          break;
+
+        case 'dots':
+          const offsets = [
+            { dx: -0.32, dy: -0.25, r: 0.11 },
+            { dx: 0.08,  dy: -0.35, r: 0.15 },
+            { dx: 0.35,  dy: -0.05, r: 0.09 },
+            { dx: -0.18, dy: 0.25,  r: 0.14 },
+            { dx: 0.24,  dy: 0.30,  r: 0.11 }
+          ];
+          offsets.forEach(pt => {
+            targetCtx.beginPath();
+            targetCtx.arc(pt.dx * s, pt.dy * s, pt.r * s, 0, Math.PI * 2);
+            targetCtx.fill();
+            targetCtx.stroke();
+          });
+          break;
+      }
+
+      targetCtx.restore();
+
+      // 若為選取狀態，繪製包浩斯虛線選取框
+      if (isSelected) {
+        targetCtx.save();
+        targetCtx.translate(el.x, el.y);
+        targetCtx.rotate((el.rotation * Math.PI) / 180);
+        targetCtx.strokeStyle = '#1D4E89';
+        targetCtx.lineWidth = 1.8;
+        targetCtx.setLineDash([5, 4]);
+        const box = el.size * 0.68;
+        targetCtx.strokeRect(-box, -box, box * 2, box * 2);
+        targetCtx.restore();
+      }
+    }
+
+    /**
+     * 主畫布渲染管線
+     */
+    function renderCanvas(exportMode = false) {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const w = rect.width;
+      const h = rect.height;
+
+      // 1. 清空主畫布與離屏圖層
+      ctx.clearRect(0, 0, w, h);
+      layerCtx.clearRect(0, 0, w, h);
+
+      // 若為匯出模式，先鋪上美術紙米白底色
+      if (exportMode) {
+        ctx.fillStyle = '#FCFBF7';
+        ctx.fillRect(0, 0, w, h);
+      }
+
+      // 2. 在離屏圖層繪製所有幾何元素
+      state.elements.forEach(el => {
+        const isSel = !exportMode && el.id === state.selectedId;
+        drawSingleElement(layerCtx, el, isSel);
+      });
+
+      // 3. 套用「剪紙局部裁切」橡皮擦筆刷 (destination-out 鏤空)
+      if (state.eraserStrokes.length > 0) {
+        layerCtx.save();
+        layerCtx.globalCompositeOperation = 'destination-out';
+        layerCtx.lineCap = 'round';
+        layerCtx.lineJoin = 'round';
+
+        state.eraserStrokes.forEach(stroke => {
+          if (stroke.points.length < 1) return;
+          layerCtx.lineWidth = stroke.size;
+          layerCtx.beginPath();
+          layerCtx.moveTo(stroke.points[0].x, stroke.points[0].y);
+          for (let i = 1; i < stroke.points.length; i++) {
+            layerCtx.lineTo(stroke.points[i].x, stroke.points[i].y);
+          }
+          if (stroke.points.length === 1) {
+            layerCtx.arc(stroke.points[0].x, stroke.points[0].y, stroke.size / 2, 0, Math.PI * 2);
+            layerCtx.fill();
+          } else {
+            layerCtx.stroke();
+          }
+        });
+        layerCtx.restore();
+      }
+
+      // 4. 將離屏圖層合成到主畫布
+      ctx.drawImage(layerCanvas, 0, 0, w, h);
+    }
+
+    /**
+     * 新增幾何元素到畫布中央附近
+     */
+    function addShapeToCanvas(type) {
+      saveHistory();
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const jitterX = (Math.random() - 0.5) * 90;
+      const jitterY = (Math.random() - 0.5) * 70;
+
+      const newEl = {
+        id: 'el_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+        type,
+        x: rect.width / 2 + jitterX,
+        y: rect.height / 2 + jitterY,
+        size: 82,
+        rotation: 0,
+        colorId: state.currentColor.id,
+        hex: state.currentColor.hex,
+        opacity: state.currentOpacity
+      };
+
+      state.elements.push(newEl);
+      state.selectedId = newEl.id;
+      setToolMode('select');
+      updateSelectedControls();
+      updateEmotionStats();
+      renderCanvas();
+
+      // 加入時同步發出康丁斯基聯覺音效
+      playSynesthesiaSound(newEl, rect.height, 0.55);
+    }
+
+    // --- 5. 滑鼠與觸控互動邏輯 ---
+    function getPointerPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    function hitTestElement(x, y) {
+      // 從最上層圖形往下偵測
+      for (let i = state.elements.length - 1; i >= 0; i--) {
+        const el = state.elements[i];
+        const dist = Math.hypot(x - el.x, y - el.y);
+        if (dist <= el.size * 0.62) {
+          return el;
+        }
+      }
+      return null;
+    }
+
+    function handlePointerDown(e) {
+      const pos = getPointerPos(e);
+      const rect = canvas.getBoundingClientRect();
+
+      if (state.toolMode === 'scissorBrush') {
+        saveHistory();
+        state.isCutting = true;
+        state.currentCutPath = {
+          size: state.scissorSize,
+          points: [pos]
+        };
+        state.eraserStrokes.push(state.currentCutPath);
+        renderCanvas();
+        return;
+      }
+
+      const hit = hitTestElement(pos.x, pos.y);
+
+      if (state.toolMode === 'deleteObj') {
+        if (hit) {
+          saveHistory();
+          state.elements = state.elements.filter(item => item.id !== hit.id);
+          if (state.selectedId === hit.id) state.selectedId = null;
+          updateSelectedControls();
+          updateEmotionStats();
+          renderCanvas();
+          showToast(`已移除「${SHAPE_META[hit.type].label}」`);
+        }
+        return;
+      }
+
+      // 預設：選取 / 拖曳 / 點擊發聲模式
+      if (hit) {
+        saveHistory();
+        state.selectedId = hit.id;
+        state.isDragging = true;
+        state.dragOffsetX = pos.x - hit.x;
+        state.dragOffsetY = pos.y - hit.y;
+        updateSelectedControls();
+        renderCanvas();
+        // 觸發聯覺樂音
+        playSynesthesiaSound(hit, rect.height, 0.65);
+      } else {
+        state.selectedId = null;
+        updateSelectedControls();
+        renderCanvas();
+      }
+    }
+
+    function handlePointerMove(e) {
+      if (state.isCutting && state.currentCutPath) {
+        e.preventDefault();
+        const pos = getPointerPos(e);
+        state.currentCutPath.points.push(pos);
+        renderCanvas();
+        return;
+      }
+
+      if (state.isDragging && state.selectedId) {
+        e.preventDefault();
+        const pos = getPointerPos(e);
+        const el = state.elements.find(item => item.id === state.selectedId);
+        if (el) {
+          el.x = pos.x - state.dragOffsetX;
+          el.y = pos.y - state.dragOffsetY;
+          renderCanvas();
+        }
+      }
+    }
+
+    function handlePointerUp() {
+      state.isDragging = false;
+      state.isCutting = false;
+      state.currentCutPath = null;
+    }
+
+    canvas.addEventListener('mousedown', handlePointerDown);
+    window.addEventListener('mousemove', handlePointerMove);
+    window.addEventListener('mouseup', handlePointerUp);
+
+    canvas.addEventListener('touchstart', handlePointerDown, { passive: false });
+    window.addEventListener('touchmove', handlePointerMove, { passive: false });
+    window.addEventListener('touchend', handlePointerUp);
+
+    // --- 6. 工具模式與圖形屬性控制 ---
+    function setToolMode(mode) {
+      state.toolMode = mode;
+      const modeBadge = document.getElementById('modeBadge');
+      const scissorBox = document.getElementById('scissorSizeBox');
+
+      // 重設按鈕樣式
+      ['modeSelectBtn', 'modeDeleteObjBtn', 'modeScissorBrushBtn'].forEach(id => {
+        const btn = document.getElementById(id);
+        btn.classList.remove('bg-[#1D4E89]', 'bg-[#D62828]', 'bg-[#F5C300]', 'text-white');
+        btn.classList.add('bg-white', 'text-[#1E1E1E]');
+      });
+
+      if (mode === 'select') {
+        const btn = document.getElementById('modeSelectBtn');
+        btn.classList.remove('bg-white', 'text-[#1E1E1E]');
+        btn.classList.add('bg-[#1D4E89]', 'text-white');
+        modeBadge.textContent = '✋ 創作與發聲模式';
+        modeBadge.className = 'px-2.5 py-0.5 rounded-full font-bold bg-[#1D4E89] text-white';
+        canvas.style.cursor = 'grab';
+        scissorBox.classList.add('hidden');
+      } else if (mode === 'deleteObj') {
+        const btn = document.getElementById('modeDeleteObjBtn');
+        btn.classList.remove('bg-white', 'text-[#1E1E1E]');
+        btn.classList.add('bg-[#D62828]', 'text-white');
+        modeBadge.textContent = '🗑️ 單擊消除圖形模式';
+        modeBadge.className = 'px-2.5 py-0.5 rounded-full font-bold bg-[#D62828] text-white';
+        canvas.style.cursor = 'not-allowed';
+        scissorBox.classList.add('hidden');
+      } else if (mode === 'scissorBrush') {
+        const btn = document.getElementById('modeScissorBrushBtn');
+        btn.classList.remove('bg-white', 'text-[#1E1E1E]');
+        btn.classList.add('bg-[#F5C300]', 'text-[#1E1E1E]');
+        modeBadge.textContent = '✂️ 剪紙局部裁切模式';
+        modeBadge.className = 'px-2.5 py-0.5 rounded-full font-bold bg-[#F5C300] text-[#1E1E1E]';
+        canvas.style.cursor = 'crosshair';
+        scissorBox.classList.remove('hidden');
+      }
+    }
+
+    function updateSelectedControls() {
+      const panel = document.getElementById('selectedItemControls');
+      if (state.selectedId && state.toolMode === 'select') {
+        panel.classList.remove('hidden');
+      } else {
+        panel.classList.add('hidden');
+      }
+    }
+
+    // 色彩盤初始化
+    function initColorPalette() {
+      const grid = document.getElementById('colorPaletteGrid');
+      grid.innerHTML = '';
+      KANDINSKY_COLORS.forEach(c => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `color-swatch-btn flex flex-col items-center p-1.5 rounded-lg border-2 transition ${
+          c.id === state.currentColor.id ? 'border-[#1E1E1E] bg-[#F2EFE7] scale-105' : 'border-transparent hover:border-gray-300'
+        }`;
+        btn.innerHTML = `
+          <span class="w-7 h-7 rounded-full border border-[#1E1E1E] shadow-sm" style="background-color:${c.hex}"></span>
+          <span class="text-[10px] font-bold mt-1 text-gray-800">${c.name}</span>
+        `;
+        btn.addEventListener('click', () => {
+          state.currentColor = c;
+          document.getElementById('activeColorLabel').textContent = c.name;
+          document.getElementById('activeColorLabel').style.backgroundColor = c.hex;
+          document.getElementById('activeColorLabel').style.color =
+            ['blue', 'red', 'purple', 'black'].includes(c.id) ? '#FFFFFF' : '#1E1E1E';
+
+          // 若畫布有選中圖形，即時套用新顏色並發聲
+          if (state.selectedId) {
+            const el = state.elements.find(item => item.id === state.selectedId);
+            if (el) {
+              saveHistory();
+              el.colorId = c.id;
+              el.hex = c.hex;
+              updateEmotionStats();
+              renderCanvas();
+              const rect = canvas.getBoundingClientRect();
+              playSynesthesiaSound(el, rect.height, 0.55);
+            }
+          }
+          initColorPalette();
+        });
+        grid.appendChild(btn);
+      });
+    }
+
+    // 即時情緒光譜統計
+    function updateEmotionStats() {
+      const container = document.getElementById('emotionStatsContainer');
+      if (state.elements.length === 0) {
+        container.innerHTML = `<p class="text-gray-500 text-[11px]">在畫布上加入幾何與色彩後，系統將即時分析你的情緒能量分布。</p>`;
+        return;
+      }
+
+      const counts = {};
+      state.elements.forEach(el => {
+        counts[el.colorId] = (counts[el.colorId] || 0) + 1;
+      });
+
+      const total = state.elements.length;
+      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+      container.innerHTML = sorted.map(([colorId, count]) => {
+        const cObj = KANDINSKY_COLORS.find(c => c.id === colorId) || KANDINSKY_COLORS[0];
+        const pct = Math.round((count / total) * 100);
+        return `
+          <div>
+            <div class="flex justify-between text-[11px] font-bold mb-0.5">
+              <span class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full border border-black/40 inline-block" style="background:${cObj.hex}"></span>
+                ${cObj.name}（${cObj.emotion.split('・')[0]}）
+              </span>
+              <span>${pct}%</span>
+            </div>
+            <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div class="h-full rounded-full transition-all duration-300" style="width:${pct}%; background:${cObj.hex === '#FFFFFF' ? '#B8B4A8' : cObj.hex}"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // --- 7. 智慧生成作品名稱與自動編曲系統 ---
+    function analyzeCanvasTraits() {
+      if (state.elements.length === 0) {
+        return {
+          dominantColor: KANDINSKY_COLORS[1],
+          dominantShape: 'circle',
+          shapeCount: 0
+        };
+      }
+      const colorMap = {};
+      const shapeMap = {};
+      state.elements.forEach(el => {
+        colorMap[el.colorId] = (colorMap[el.colorId] || 0) + 1;
+        shapeMap[el.type] = (shapeMap[el.type] || 0) + 1;
+      });
+
+      const topColorId = Object.entries(colorMap).sort((a, b) => b[1] - a[1])[0][0];
+      const topShape = Object.entries(shapeMap).sort((a, b) => b[1] - a[1])[0][0];
+
+      return {
+        dominantColor: KANDINSKY_COLORS.find(c => c.id === topColorId) || KANDINSKY_COLORS[0],
+        dominantShape: topShape,
+        shapeCount: state.elements.length
+      };
+    }
+
+    function generatePoeticArtworkTitle() {
+      const { dominantColor, dominantShape } = analyzeCanvasTraits();
+
+      const colorPrefixes = {
+        yellow: ['金色小號', '暖陽躍動', '熱烈光芒', '黃色銳角'],
+        blue:   ['深藍大提琴', '靜謐宇宙', '沉思波光', '蔚藍星海'],
+        red:    ['炙熱鼓點', '赤紅脈動', '勇氣交響', '火焰秩序'],
+        green:  ['翠綠弦音', '和諧微風', '平衡森林', '寧靜律動'],
+        purple: ['紫羅蘭夢境', '神祕泛音', '靈感星雲', '深邃詩篇'],
+        orange: ['橙光暖流', '希望弧線', '晨曦合奏', '溫暖共振'],
+        black:  ['墨色沉澱', '靜默邊界', '夜曲低吟', '深邃幾何'],
+        white:  ['純白留白', '清澈晨光', '無聲詩行', '純淨空間']
+      };
+
+      const shapeNouns = {
+        triangle:   ['的銳角變奏', '與張力狂想曲', '的光束賦格'],
+        circle:     ['的圓舞曲', '與內在宇宙', '的柔和迴響'],
+        square:     ['的穩重奏鳴曲', '與秩序詩篇', '的堅定和弦'],
+        concentric: ['的同心共鳴', '與靈魂漣漪', '的多重奏'],
+        wave:       ['的流動小夜曲', '與波浪律動', '的抒情詩'],
+        arc:        ['的期盼弧線', '與天際交響', '的上升旋律'],
+        cross:      ['的交錯對話', '與思緒協奏', '的結構張力'],
+        dots:       ['的星群隨想', '與微光前奏曲', '的點彩樂章']
+      };
+
+      const pList = colorPrefixes[dominantColor.id] || ['色彩與幾何'];
+      const sList = shapeNouns[dominantShape] || ['的內在交響'];
+
+      const pickP = pList[Math.floor(Math.random() * pList.length)];
+      const pickS = sList[Math.floor(Math.random() * sList.length)];
+
+      return `《${pickP}${pickS}》`;
+    }
+
+    /**
+     * 根據畫布所有圖形的 X 軸（時間順序）、Y 軸（音高）與形狀顏色自動編曲並播放
+     */
+    function stopGeneratedMusic() {
+      state.isPlayingMusic = false;
+      state.musicTimers.forEach(t => clearTimeout(t));
+      state.musicTimers = [];
+      document.getElementById('musicPlayIcon').textContent = '▶';
+      document.getElementById('musicPlayText').textContent = '播放專屬樂曲';
+      document.querySelectorAll('.wave-bar').forEach(bar => {
+        bar.style.animationPlayState = 'paused';
+      });
+    }
+
+    function playGeneratedMusic() {
+      if (state.isPlayingMusic) {
+        stopGeneratedMusic();
+        return;
+      }
+
+      initAudio();
+      state.isPlayingMusic = true;
+      document.getElementById('musicPlayIcon').textContent = '⏹';
+      document.getElementById('musicPlayText').textContent = '停止播放';
+      document.querySelectorAll('.wave-bar').forEach(bar => {
+        bar.style.animationPlayState = 'running';
+      });
+
+      const rect = canvas.getBoundingClientRect();
+      // 若畫布為空，使用預設和弦示範
+      let sequence = [...state.elements];
+      if (sequence.length === 0) {
+        sequence = [
+          { type: 'circle', colorId: 'blue', x: 80, y: rect.height * 0.7 },
+          { type: 'wave', colorId: 'green', x: 180, y: rect.height * 0.5 },
+          { type: 'triangle', colorId: 'yellow', x: 280, y: rect.height * 0.3 },
+          { type: 'concentric', colorId: 'purple', x: 380, y: rect.height * 0.4 }
+        ];
+      } else {
+        // 依據 X 軸座標從左到右排序，將空間構圖轉化為時間樂譜
+        sequence.sort((a, b) => a.x - b.x);
+      }
+
+      // 總樂曲長度約 8.5 秒，均勻分配音符時距
+      const totalDurationMs = 8500;
+      const stepMs = Math.max(380, Math.min(900, totalDurationMs / sequence.length));
+
+      sequence.forEach((el, idx) => {
+        const timer = setTimeout(() => {
+          if (!state.isPlayingMusic) return;
+          playSynesthesiaSound(el, rect.height, 0.85);
+        }, idx * stepMs);
+        state.musicTimers.push(timer);
+      });
+
+      const endTimer = setTimeout(() => {
+        stopGeneratedMusic();
+      }, sequence.length * stepMs + 700);
+      state.musicTimers.push(endTimer);
+    }
+
+    // --- 8. 高質感美術館展覽明信片 PNG 合成與下載 ---
+    function downloadMuseumPostcard() {
+      const title = document.getElementById('artworkTitleInput').value.trim() || '《無題・內在宇宙》';
+      const author = document.getElementById('creatorNameInput').value.trim() || '匿名藝術家';
+      const concept = document.getElementById('creatorConceptInput').value.trim() ||
+        '透過點、線、面與色彩的自由組合，聆聽內在情緒與聲響的共鳴。';
+
+      // 先取得乾淨無選取框的畫布影像
+      renderCanvas(true);
+      const artDataUrl = canvas.toDataURL('image/png');
+      renderCanvas(false); // 恢復編輯畫面
+
+      const artImg = new Image();
+      artImg.onload = () => {
+        const cardCanvas = document.createElement('canvas');
+        const cw = 1080;
+        const ch = 1380;
+        cardCanvas.width = cw;
+        cardCanvas.height = ch;
+        const cctx = cardCanvas.getContext('2d');
+
+        // 1. 明信片美術館高級美術紙背景
+        cctx.fillStyle = '#F9F7F2';
+        cctx.fillRect(0, 0, cw, ch);
+
+        // 外框雙線裝飾
+        cctx.strokeStyle = '#1E1E1E';
+        cctx.lineWidth = 6;
+        cctx.strokeRect(32, 32, cw - 64, ch - 64);
+
+        // 2. 頂部展覽標題欄
+        cctx.fillStyle = '#1E1E1E';
+        cctx.fillRect(32, 32, cw - 64, 78);
+
+        // 包浩斯三色幾何標記
+        cctx.fillStyle = '#1D4E89';
+        cctx.beginPath();
+        cctx.arc(82, 71, 14, 0, Math.PI * 2);
+        cctx.fill();
+
+        cctx.fillStyle = '#D62828';
+        cctx.fillRect(104, 57, 26, 26);
+
+        cctx.fillStyle = '#F5C300';
+        cctx.beginPath();
+        cctx.moveTo(152, 56);
+        cctx.lineTo(167, 84);
+        cctx.lineTo(137, 84);
+        cctx.closePath();
+        cctx.fill();
+
+        cctx.fillStyle = '#F9F7F2';
+        cctx.font = 'bold 24px "Noto Sans TC", sans-serif';
+        cctx.fillText('KANDINSKY × SEL 社會情緒視覺藝術典藏展', 190, 80);
+
+        // 3. 繪製作品主畫布框
+        const artX = 76;
+        const artY = 148;
+        const artW = cw - 152;
+        const artH = Math.round(artW * 0.75);
+
+        // 畫作陰影與邊框
+        cctx.fillStyle = '#1E1E1E';
+        cctx.fillRect(artX + 10, artY + 10, artW, artH);
+        cctx.drawImage(artImg, artX, artY, artW, artH);
+        cctx.strokeStyle = '#1E1E1E';
+        cctx.lineWidth = 4;
+        cctx.strokeRect(artX, artY, artW, artH);
+
+        // 4. 作品名稱與創作者資訊區
+        let curY = artY + artH + 72;
+        cctx.fillStyle = '#1E1E1E';
+        cctx.font = 'bold 42px "Noto Serif TC", serif';
+        cctx.fillText(title, artX, curY);
+
+        curY += 46;
+        cctx.fillStyle = '#1D4E89';
+        cctx.font = 'bold 24px "Noto Sans TC", sans-serif';
+        cctx.fillText(`創作者：${author}   ｜   創作日期：${new Date().toLocaleDateString('zh-TW')}`, artX, curY);
+
+        // 5. 情緒色彩標籤徽章
+        curY += 42;
+        const uniqueColors = [...new Set(state.elements.map(e => e.colorId))];
+        const badgeColors = uniqueColors.length > 0
+          ? uniqueColors.map(id => KANDINSKY_COLORS.find(c => c.id === id))
+          : [KANDINSKY_COLORS[1], KANDINSKY_COLORS[0]];
+
+        let badgeX = artX;
+        badgeColors.slice(0, 4).forEach(cObj => {
+          const label = `# ${cObj.name}・${cObj.emotion.split('・')[0]}`;
+          cctx.font = 'bold 20px "Noto Sans TC", sans-serif';
+          const tw = cctx.measureText(label).width + 30;
+          cctx.fillStyle = cObj.hex;
+          cctx.fillRect(badgeX, curY - 24, tw, 36);
+          cctx.strokeStyle = '#1E1E1E';
+          cctx.lineWidth = 2;
+          cctx.strokeRect(badgeX, curY - 24, tw, 36);
+
+          cctx.fillStyle = ['blue', 'red', 'purple', 'black'].includes(cObj.id) ? '#FFFFFF' : '#1E1E1E';
+          cctx.fillText(label, badgeX + 15, curY + 2);
+          badgeX += tw + 14;
+        });
+
+        // 6. 創作理念自動換行排版
+        curY += 56;
+        cctx.fillStyle = '#333333';
+        cctx.font = '22px "Noto Sans TC", sans-serif';
+        const maxLineWidth = artW;
+        let line = '「';
+        const fullText = concept + '」';
+        for (let i = 0; i < fullText.length; i++) {
+          const testLine = line + fullText[i];
+          if (cctx.measureText(testLine).width > maxLineWidth && i > 0) {
+            cctx.fillText(line, artX, curY);
+            line = fullText[i];
+            curY += 34;
+            if (curY > ch - 80) break;
+          } else {
+            line = testLine;
+          }
+        }
+        cctx.fillText(line, artX, curY);
+
+        // 7. 觸發 PNG 下載
+        const link = document.createElement('a');
+        const safeFileName = title.replace(/[《》\/\\:*?"<>|]/g, '') || 'SEL_Kandinsky_Art';
+        link.download = `${safeFileName}_${author}.png`;
+        link.href = cardCanvas.toDataURL('image/png');
+        link.click();
+        showToast('🎉 藝術作品明信片已成功下載！');
+      };
+      artImg.src = artDataUrl;
+    }
+
+    // --- 9. UI 事件綁定與初始化 ---
+    function showToast(msg) {
+      const toast = document.getElementById('toastMsg');
+      toast.textContent = msg;
+      toast.classList.remove('opacity-0');
+      setTimeout(() => toast.classList.add('opacity-0'), 2400);
+    }
+
+    // 導覽面板收合與分頁切換
+    const guidePanel = document.getElementById('guidePanel');
+    document.getElementById('toggleGuideBtn').addEventListener('click', () => {
+      guidePanel.classList.toggle('hidden');
+    });
+    document.getElementById('closeGuideBtn').addEventListener('click', () => {
+      guidePanel.classList.add('hidden');
+    });
+
+    document.querySelectorAll('.guide-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.guide-tab-btn').forEach(b => {
+          b.classList.remove('bg-[#1E1E1E]', 'text-white');
+          b.classList.add('bg-white', 'text-[#1E1E1E]', 'border', 'border-[#1E1E1E]');
+        });
+        btn.classList.add('bg-[#1E1E1E]', 'text-white');
+        btn.classList.remove('bg-white', 'text-[#1E1E1E]');
+
+        const target = btn.dataset.tab;
+        document.querySelectorAll('.guide-tab-content').forEach(c => c.classList.add('hidden'));
+        const activeTab = document.getElementById(`tab-${target}`);
+        activeTab.classList.remove('hidden');
+        activeTab.classList.add('grid');
+      });
+    });
+
+    // 加入幾何元素按鈕
+    document.querySelectorAll('.shape-add-btn').forEach(btn => {
+      btn.addEventListener('click', () => addShapeToCanvas(btn.dataset.shape));
+    });
+
+    // 透明度滑桿
+    document.getElementById('opacitySlider').addEventListener('input', (e) => {
+      const val = parseInt(e.target.value, 10);
+      state.currentOpacity = val / 100;
+      document.getElementById('opacityValText').textContent = `${val}%`;
+      if (state.selectedId) {
+        const el = state.elements.find(item => item.id === state.selectedId);
+        if (el) {
+          el.opacity = state.currentOpacity;
+          renderCanvas();
+        }
+      }
+    });
+
+    // 選取圖形微調控制按鈕
+    document.getElementById('scaleUpBtn').addEventListener('click', () => {
+      const el = state.elements.find(i => i.id === state.selectedId);
+      if (el) { saveHistory(); el.size = Math.min(220, el.size + 14); renderCanvas(); }
+    });
+    document.getElementById('scaleDownBtn').addEventListener('click', () => {
+      const el = state.elements.find(i => i.id === state.selectedId);
+      if (el) { saveHistory(); el.size = Math.max(32, el.size - 14); renderCanvas(); }
+    });
+    document.getElementById('rotateBtn').addEventListener('click', () => {
+      const el = state.elements.find(i => i.id === state.selectedId);
+      if (el) { saveHistory(); el.rotation = (el.rotation + 30) % 360; renderCanvas(); }
+    });
+    document.getElementById('layerUpBtn').addEventListener('click', () => {
+      const idx = state.elements.findIndex(i => i.id === state.selectedId);
+      if (idx > -1 && idx < state.elements.length - 1) {
+        saveHistory();
+        const [item] = state.elements.splice(idx, 1);
+        state.elements.push(item);
+        renderCanvas();
+      }
+    });
+    document.getElementById('deleteSelectedBtn').addEventListener('click', () => {
+      if (state.selectedId) {
+        saveHistory();
+        state.elements = state.elements.filter(i => i.id !== state.selectedId);
+        state.selectedId = null;
+        updateSelectedControls();
+        updateEmotionStats();
+        renderCanvas();
+      }
+    });
+
+    // 側邊消除與裁切模式按鈕
+    document.getElementById('modeSelectBtn').addEventListener('click', () => setToolMode('select'));
+    document.getElementById('modeDeleteObjBtn').addEventListener('click', () => setToolMode('deleteObj'));
+    document.getElementById('modeScissorBrushBtn').addEventListener('click', () => setToolMode('scissorBrush'));
+
+    document.getElementById('scissorSizeSlider').addEventListener('input', (e) => {
+      state.scissorSize = parseInt(e.target.value, 10);
+      document.getElementById('scissorSizeVal').textContent = `${state.scissorSize} px`;
+    });
+
+    document.getElementById('undoBtn').addEventListener('click', undoAction);
+    document.getElementById('clearCanvasBtn').addEventListener('click', () => {
+      if (state.elements.length === 0 && state.eraserStrokes.length === 0) return;
+      saveHistory();
+      state.elements = [];
+      state.eraserStrokes = [];
+      state.selectedId = null;
+      updateSelectedControls();
+      updateEmotionStats();
+      renderCanvas();
+      showToast('畫布已清空，隨時開啟新的情緒探索');
+    });
+
+    // 音效開關
+    document.getElementById('soundToggleBtn').addEventListener('click', () => {
+      state.soundEnabled = !state.soundEnabled;
+      document.getElementById('soundIcon').textContent = state.soundEnabled ? '🔊' : '🔇';
+      document.getElementById('soundText').textContent = state.soundEnabled ? '聯覺音效：開' : '聯覺音效：關';
+    });
+
+    // 完成創作 Modal 邏輯
+    const finishModal = document.getElementById('finishModal');
+    document.getElementById('openFinishModalBtn').addEventListener('click', () => {
+      // 產生無選取框的作品預覽
+      renderCanvas(true);
+      document.getElementById('artworkPreviewImg').src = canvas.toDataURL('image/png');
+      renderCanvas(false);
+
+      // 自動生成詩意作品名稱與樂曲標題
+      const autoTitle = generatePoeticArtworkTitle();
+      document.getElementById('artworkTitleInput').value = autoTitle;
+      document.getElementById('generatedMusicTitle').textContent = `${autoTitle}（聯覺自動編曲）`;
+
+      finishModal.classList.remove('hidden');
+    });
+
+    document.getElementById('closeFinishModalBtn').addEventListener('click', () => {
+      stopGeneratedMusic();
+      finishModal.classList.add('hidden');
+    });
+
+    document.getElementById('regenerateTitleBtn').addEventListener('click', () => {
+      const newTitle = generatePoeticArtworkTitle();
+      document.getElementById('artworkTitleInput').value = newTitle;
+      document.getElementById('generatedMusicTitle').textContent = `${newTitle}（聯覺自動編曲）`;
+    });
+
+    document.getElementById('playGeneratedMusicBtn').addEventListener('click', playGeneratedMusic);
+    document.getElementById('downloadArtworkCardBtn').addEventListener('click', downloadMuseumPostcard);
+
+    // 初始化音波視覺條
+    function initVisualizerBars() {
+      const box = document.getElementById('musicVisualizerBars');
+      box.innerHTML = '';
+      for (let i = 0; i < 24; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'wave-bar flex-1 rounded-full bg-[#F5C300]';
+        bar.style.height = `${35 + Math.random() * 65}%`;
+        bar.style.animationDelay = `${(i * 0.07).toFixed(2)}s`;
+        bar.style.animationPlayState = 'paused';
+        box.appendChild(bar);
+      }
+    }
+
+    // 啟動初始化
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('load', () => {
+      initColorPalette();
+      initVisualizerBars();
+      resizeCanvas();
+
+      // 預設放置三個康丁斯基經典元素引導體驗
+      const rect = canvas.getBoundingClientRect();
+      state.elements = [
+        { id: 'init_1', type: 'circle',   x: rect.width * 0.36, y: rect.height * 0.52, size: 110, rotation: 0,  colorId: 'blue',   hex: '#1D4E89', opacity: 0.88 },
+        { id: 'init_2', type: 'triangle', x: rect.width * 0.58, y: rect.height * 0.38, size: 95,  rotation: 15, colorId: 'yellow', hex: '#F5C300', opacity: 0.92 },
+        { id: 'init_3', type: 'wave',     x: rect.width * 0.50, y: rect.height * 0.68, size: 120, rotation: 0,  colorId: 'green',  hex: '#2A9D8F', opacity: 0.95 }
+      ];
+      updateEmotionStats();
+      renderCanvas();
+    });
+  </script>
+</body>
+</html>
